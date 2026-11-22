@@ -329,7 +329,15 @@ $('explain').addEventListener('click', async () => {
     tag.className = `chip ${source === 'on_device' ? 'chip-device' : 'chip-cloud'}`
     tag.textContent =
       source === 'on_device' ? 'GENERAL INFO · written on device' : 'GENERAL INFO · written in the cloud (your message was not sent)'
-    box.append(tag, document.createElement('br'), text)
+    box.append(tag, document.createElement('br'))
+    // Models like to mark headings with **asterisks**; show those as bold instead of raw symbols.
+    text.split(/\*\*(.+?)\*\*/g).forEach((piece, i) => {
+      if (i % 2 === 1) {
+        const strong = document.createElement('strong')
+        strong.textContent = piece
+        box.append(strong)
+      } else box.append(piece.replace(/^#+\s*/gm, ''))
+    })
   } catch (e) {
     box.textContent = explainError(e, 'cloud')
   }
