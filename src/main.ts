@@ -264,9 +264,11 @@ function render(outcome: Outcome, checkedText: string): void {
 
   const flags = $('flags')
   flags.replaceChildren()
-  result.redFlags.forEach((f) => {
+  const located = new Set(spans.map((s) => s.flag))
+  result.redFlags.forEach((f, i) => {
     const li = document.createElement('li')
-    if (f.quote) {
+    // A quote is shown only when it really occurs in the message (or the message was an image).
+    if (f.quote && (located.has(i) || !lastChecked)) {
       const q = document.createElement('q')
       q.textContent = f.quote
       li.append(q, ' ')
