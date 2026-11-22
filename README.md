@@ -5,6 +5,8 @@ you whether it looks like a scam, which parts of it are the warning signs, and w
 
 **Try it:** https://cek-dulu-26f35.web.app (Chrome on a desktop or laptop)
 
+**Demo video (1:41):** https://youtu.be/AptFxkfTvZw
+
 Built for the #BuildHybridAI hackathon with the Firebase AI Logic hybrid inference SDK.
 
 ## Why it exists
