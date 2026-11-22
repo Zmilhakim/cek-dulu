@@ -78,3 +78,4 @@ pre mark { background: #cdeee7; color: var(--teal); border-radius: 4px; padding:
 .explainer .chip { margin-bottom: 8px; }
 footer { padding-top: 6px; padding-bottom: 40px; color: var(--dim); font-size: 13px; }
 [hidden] { display: none !important; }
+#cloud-instead { margin-top: 12px; }

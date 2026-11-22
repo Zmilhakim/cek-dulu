@@ -71,6 +71,8 @@ async function refreshStatus(): Promise<void> {
   $('go-note').textContent = local
     ? 'Read by an AI model inside this browser. Nothing is sent anywhere.'
     : 'Nothing is sent without showing you first.'
+  // With a local model the cloud is never needed, but it stays a deliberate choice behind the same consent screen.
+  show('cloud-instead', local)
 }
 
 // ------------------------------------------------------------------- input
@@ -175,6 +177,10 @@ $('setup-primary').addEventListener('click', async () => {
   }
 })
 
+$('cloud-instead').addEventListener('click', () => {
+  if (!message.value.trim() && !shot) return fail('Paste a message or add a screenshot first.')
+  askCloud('You chose the larger cloud model for this check.')
+})
 $('setup-cloud').addEventListener('click', () => askCloud('You chose the cloud model instead of downloading the on-device model.'))
 
 async function runDevice(): Promise<void> {
