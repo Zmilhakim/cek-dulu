@@ -1,0 +1,21 @@
+{
+  "parameters": {
+    "cloud_model": {
+      "defaultValue": { "value": "gemini-3.5-flash-lite" },
+      "description": "Cloud model used when the person agrees to a cloud check.",
+      "valueType": "STRING"
+    },
+    "max_device_chars": {
+      "defaultValue": { "value": "6000" },
+      "description": "Longest message, in characters, that is checked on the device.",
+      "valueType": "NUMBER"
+    },
+    "trend_hints": {
+      "defaultValue": {
+        "value": "- A courier or wedding 'invitation' sent as an .apk file\n- A fake toll, parking or tax fine with a payment link\n- A 'like videos for money' job that asks for a deposit\n- A caller or chat posing as bank staff asking for the one-time code"
+      },
+      "description": "Scam patterns seen recently. Added to the model instructions without a new release.",
+      "valueType": "STRING"
+    }
+  }
+}

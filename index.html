@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cek Dulu: check a suspicious message, privately</title>
+    <meta name="description" content="Paste a suspicious message or screenshot. An AI model inside your browser checks it for scam signs. Nothing is sent unless you agree." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23134e4a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Cek Dulu</h1>
+          <p class="tag">"Check first." Paste a suspicious message before you tap, pay or reply.</p>
+        </div>
+      </div>
+      <div id="device-chip" class="chip chip-wait" role="status">Checking this browser…</div>
+    </header>
+
+    <main>
+      <section class="card" aria-labelledby="in-title">
+        <h2 id="in-title">The message</h2>
+        <textarea id="message" rows="7" placeholder="Paste the SMS, chat or email text here. Any language."></textarea>
+        <div id="shot-row" class="shot-row" hidden>
+          <img id="shot-preview" alt="Attached screenshot" />
+          <div>
+            <strong id="shot-name"></strong>
+            <button id="shot-remove" class="link" type="button">Remove screenshot</button>
+          </div>
+        </div>
+        <div class="tools">
+          <label class="btn ghost" for="shot-input">Add a screenshot</label>
+          <input id="shot-input" type="file" accept="image/png,image/jpeg" hidden />
+          <span class="hint">or paste an image. Try an example:</span>
+          <span id="samples" class="samples"></span>
+        </div>
+        <div class="go">
+          <button id="check" class="btn primary" type="button">Check privately</button>
+          <p id="go-note" class="note">Read by an AI model inside this browser. Nothing is sent anywhere.</p>
+        </div>
+      </section>
+
+      <section id="setup" class="card setup" hidden aria-live="polite">
+        <h2 id="setup-title"></h2>
+        <p id="setup-text"></p>
+        <div id="progress" class="progress" hidden><div id="progress-bar"></div></div>
+        <div class="row">
+          <button id="setup-primary" class="btn primary" type="button"></button>
+          <button id="setup-cloud" class="btn ghost" type="button">Use the cloud model instead…</button>
+        </div>
+      </section>
+
+      <section id="consent" class="card consent" hidden aria-live="polite">
+        <h2>Send a cleaned copy to the cloud?</h2>
+        <p id="consent-why"></p>
+        <p class="label">Exactly this text will be sent to Google's Gemini model through Firebase:</p>
+        <pre id="consent-preview"></pre>
+        <p id="consent-redactions" class="note"></p>
+        <p id="consent-shot" class="warn" hidden>
+          A screenshot cannot be cleaned automatically. If you continue, the whole image is sent as it is.
+        </p>
+        <div class="row">
+          <button id="consent-send" class="btn primary" type="button">Send this and check</button>
+          <button id="consent-cancel" class="btn ghost" type="button">Cancel, send nothing</button>
+        </div>
+      </section>
+
+      <section id="busy" class="card busy" hidden aria-live="polite"><span class="spin" aria-hidden="true"></span><span id="busy-text"></span></section>
+      <section id="error" class="card error" hidden role="alert"></section>
+
+      <section id="result" class="card result" hidden aria-live="polite">
+        <div class="verdict-row">
+          <span id="verdict" class="verdict"></span>
+          <span id="scam-type" class="type"></span>
+          <span id="source" class="chip"></span>
+        </div>
+        <p id="summary" class="summary"></p>
+        <div id="flag-block">
+          <h3>Warning signs in the message</h3>
+          <div id="marked" class="marked"></div>
+          <ol id="flags" class="flags"></ol>
+        </div>
+        <h3>What to do</h3>
+        <ul id="actions" class="actions"></ul>
+        <div id="reply-block">
+          <h3>A reply that gives nothing away</h3>
+          <div class="reply"><span id="reply"></span><button id="copy" class="btn ghost small" type="button">Copy</button></div>
+        </div>
+        <div class="row more">
+          <button id="explain" class="btn ghost" type="button">How does this kind of scam work?</button>
+          <button id="second" class="btn ghost" type="button" hidden>Get a second opinion from the cloud model…</button>
+        </div>
+        <div id="explainer" class="explainer" hidden></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Cek Dulu gives an opinion, not a guarantee. When in doubt, contact the company through a number or site you
+        already know. Built with Firebase AI Logic hybrid inference: Gemini Nano in Chrome on the device, Gemini in
+        the cloud only with your consent.
+      </p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "cek-dulu",
+  "version": "0.1.0",
+  "description": "Check a suspicious message for scam signs, on the device first. Firebase AI Logic hybrid inference.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "deploy": "vite build && firebase deploy --only hosting,remoteconfig"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "dependencies": {
+    "firebase": "^13.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  },
+  "private": true
+}
